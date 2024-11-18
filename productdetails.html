@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body>
+    <header>
+        <h1 id="product-title">Product Details</h1>
+    </header>
+    <main>
+        <div class="product-detail-container">
+            <div class="product-images">
+                <img id="main-image" src="" alt="Main Image">
+                <div class="thumbnail-images">
+                    <img id="thumb1" src="" alt="Thumbnail 1">
+                    <img id="thumb2" src="" alt="Thumbnail 2">
+                    <img id="thumb3" src="" alt="Thumbnail 3">
+                </div>
+            </div>
+            <div class="product-info">
+                <h2 id="product-name"></h2>
+                <p id="product-description"></p>
+                <p><strong>Price: ₹<span id="product-price"></span></strong></p>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Function to fetch product details based on the query parameter
+        function getProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('product');
+
+            // Dummy data for products
+            const products = {
+                'rose': {
+                    name: 'Rose',
+                    description: 'Beautiful and fragrant roses in various colors.',
+                    price: '200',
+                    images: ['rose1.jpg', 'rose2.jpg', 'rose3.jpg']
+                },
+                'marigold': {
+                    name: 'Marigold',
+                    description: 'Bright and vibrant marigolds perfect for your garden.',
+                    price: '100',
+                    images: ['marigold1.jpg', 'marigold2.jpg', 'marigold3.jpg']
+                },
+                // Add more products here
+            };
+
+            if (products[productName]) {
+                const product = products[productName];
+                document.getElementById('product-title').textContent = product.name + " Details";
+                document.getElementById('product-name').textContent = product.name;
+                document.getElementById('product-description').textContent = product.description;
+                document.getElementById('product-price').textContent = product.price;
+
+                // Set the main image and thumbnails
+                document.getElementById('main-image').src = product.images[0];
+                document.getElementById('thumb1').src = product.images[0];
+                document.getElementById('thumb2').src = product.images[1];
+                document.getElementById('thumb3').src = product.images[2];
+            }
+        }
+
+        // Call the function to load product details
+        window.onload = getProductDetails;
+    </script>
+</body>
+</html>
